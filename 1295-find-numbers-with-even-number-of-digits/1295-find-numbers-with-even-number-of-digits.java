@@ -6,7 +6,6 @@ class Solution {
         while(x>0){
             int count = 0;
             while(nums[i]>0){
-                int rem = nums[i]%10;
                 count++;
                 nums[i] = nums[i]/10;
             }
