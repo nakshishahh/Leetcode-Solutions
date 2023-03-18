@@ -38,17 +38,18 @@ public class Main {
 class Solution {
     int count(int[] arr, int n, int x) {
         // code here
-        int max = arr[n-1];
-        int[] count = new int[max + 1];
-        for(int i = 0;i<arr.length;i++){
-            count[arr[i]]++;
-        }
-        for(int i = 0;i<count.length;i++){
-            if(i==x){
-                return count[i];
+        HashMap <Integer,Integer> map = new HashMap<>();
+        for(int i = 0;i<n;i++){
+            if(map.containsKey(arr[i])){
+                map.put(arr[i] , map.get(arr[i]) + 1);
+            }else{
+                map.put(arr[i] , 1);
+                
             }
         }
-        return 0;
-            
+        if(map.containsKey(x)){
+        return map.get(x);
         }
+        return 0;
     }
+}
