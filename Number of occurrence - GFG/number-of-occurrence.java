@@ -36,20 +36,41 @@ public class Main {
 
 
 class Solution {
-    int count(int[] arr, int n, int x) {
-        // code here
-        HashMap <Integer,Integer> map = new HashMap<>();
-        for(int i = 0;i<n;i++){
-            if(map.containsKey(arr[i])){
-                map.put(arr[i] , map.get(arr[i]) + 1);
-            }else{
-                map.put(arr[i] , 1);
-                
+    int count(int[] nums, int n, int target) {
+        int start = search(nums, target, true);
+            int end = search(nums , target,false);
+            int ans = end - start + 1;
+            if(start==-1 && end==-1){
+                return 0;
             }
+
+
+            return ans;
         }
-        if(map.containsKey(x)){
-        return map.get(x);
-        }
-        return 0;
+            int search(int[] nums, int target, boolean findStartIndex ){
+                int ans = -1;
+                int start = 0;
+                int end = nums.length - 1;
+                while(start<=end){
+                int mid = start + (end - start) / 2;
+                
+                
+                if(target < nums[mid]){
+                    end = mid - 1;
+                }else if(target > nums[mid]){
+                    start = mid + 1;
+                }else{
+                    ans = mid;
+                    if(findStartIndex){
+                        end = mid - 1;
+                    }else{
+                        start = mid + 1;
+                    }
+
+                }
+                }
+                return ans;
+
+        // code here
     }
 }
