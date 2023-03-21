@@ -35,27 +35,36 @@ public class Main {
 
 class Solution {
     int rowWithMax1s(int arr[][], int n, int m) {
-        // code here
-        int max = 0;
-        int ans = 0;
-        int count = 0;
+        int min = Integer.MAX_VALUE;
+        int ans = -1;
         int i = 0;
         for( i = 0;i<n;i++){
-            count = 0;
-            for(int j = 0;j<m;j++){
-                if(arr[i][j]==1){
-                    count++;
-                    
-                }
-            }
-            if(count>max){
-                max = count;
+            int count = search(arr[i]);
+            if(count!=-1 && count<min){
+                min = count;
                 ans = i;
+                
             }
+            
         }
-        if(max== 0){
-            return -1;
+        return ans;
+        // code here
+    }
+    int search(int[]nums){
+        int ans = -1;
+        int start = 0;
+        int end = nums.length-1;
+        while(start<=end){
+            int mid = start + (end-start)/2;
+            if(nums[mid]==1){
+                ans  = mid;
+                end = mid - 1;
+                
+            }else{
+                start = mid + 1;
+            }
         }
         return ans;
     }
+    
 }
