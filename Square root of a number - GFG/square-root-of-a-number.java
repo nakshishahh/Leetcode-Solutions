@@ -36,9 +36,9 @@ class Solution
 	         if(mid*mid==x){
 	             return mid;
 	         }else if(mid*mid < x){
-	             start = start + 1;
+	             start = mid + 1;
 	         }else{
-	             end = end - 1;
+	             end = mid - 1;
 	         }
 	         
 	     }
