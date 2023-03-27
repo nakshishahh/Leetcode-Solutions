@@ -36,47 +36,49 @@ class Solution
     //Function to find minimum number of pages.
     public static int findPages(int[]A,int N,int M)
     {
+        int start = Integer.MIN_VALUE;
+        int end = 0;
+        int ans = -1;
+        for(int i = 0;i<N;i++){
+            start = Math.max(start,A[i]);
+            end += A[i];
+            
+        }
         if(M>N){
             return -1;
         }
-        
-        //Your code here
-        int max = A[0];
-        int sum = 0;
-        int ans =-1;
-        for(int i = 0;i<A.length;i++){
-            sum = sum + A[i];
-            if(A[i]>max){
-                max = A[i];
+        if(N==M){
+            return start;
+        }
+        while(start<=end){
+            int mid = start + (end-start)/2;
+            if(find(A,M,mid)==true){
+                ans = mid;
+                end = mid - 1;
+            }else{
+                start = mid + 1;
             }
         }
-        if(M==N){
-            return max;
-        }
-        int l = max;
-        int h = sum;
-        while(l<=h){
-            int mid = l + (h-l)/2;
-            if(find(A,N,M,mid)==true){
-                ans = mid;
-                h=mid-1;
+        
+        return ans;
+        //Your code here
+    }
+    static boolean find(int[] arr , int m , int mid){
+        int count  =1;
+        int sum = 0;
+        for(int i = 0;i<arr.length;i++){
+            if(arr[i]>mid){
+                return false;
+            }
+            if(sum + arr[i]>mid){
+                sum = arr[i];
+                count++;
+
             }else{
-                l = mid + 1;
+                sum = sum + arr[i];
             }
             
         }
-        return ans;
-    }
-     static boolean find(int[] arr, int N , int m , int mid){
-        int sum = 0;
-        int no = 1;
-        for(int i = 0;i<N;i++){
-            sum += arr[i];
-            if(sum>mid){
-                sum=arr[i];
-                no++;
-            }
-        }
-        return no<=m;
+        return count <= m;
     }
 }
