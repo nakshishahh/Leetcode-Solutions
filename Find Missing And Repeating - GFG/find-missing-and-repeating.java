@@ -31,49 +31,26 @@ class GFG {
 
 class Solve {
     int[] findTwoElement(int arr[], int n) {
-        
-        // code here
-//         HashMap<Integer,Integer> map = new HashMap<>();
-//       int[] ans = new int[2];
-//         for(int i = 0;i<n;i++){
-//             if(map.containsKey(arr[i])){
-//                 map.put(arr[i],map.get(arr[i])+1);
-//             }else{
-//                 map.put(arr[i],1);
-//             }
-//         }
-        
-//         for(int i = 0;i<n;i++){
-//                 if(map.get(arr[i])==2){
-//                     ans[0]=arr[i];
-                
-//             }
-//             if(!map.containsKey(i+1)){
-//                 ans[1]=i+1;
-//             }
-//         }
-//         return ans;
-//     }
-// }
+        int[] ans = new int[2];
 
-     
-        
-
-        int[] count = new int[n + 1];
-        int[] result = new int[2];
-
-        for (int num : arr) {
-            count[num]++;
-        }
-
-        for (int i = 1; i <= n; i++) {
-            if (count[i] == 0) {
-                result[1] = i; // Missing number
-            } else if (count[i] == 2) {
-                result[0] = i; // Duplicate number
+        for (int i = 0; i < n; i++) {
+            int curr = arr[i];
+            if (arr[i] != arr[curr - 1]) {
+                int temp = arr[i];
+                arr[i] = arr[curr - 1];
+                arr[curr - 1] = temp;
+                i--; // Revisit the swapped element
             }
         }
 
-        return result;
+        for (int i = 0; i < n; i++) {
+            if (arr[i] != i + 1) {
+                ans[0] = arr[i];
+                ans[1] = i + 1;
+                break;
+            }
+        }
+
+        return ans;
     }
 }
