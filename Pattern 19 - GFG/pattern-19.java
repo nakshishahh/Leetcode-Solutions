@@ -21,31 +21,33 @@ class Main {
 class Solution {
 
     void printTriangle(int n) {
-        for (int i = 1; i <= n; i++) {
-            for (int j = 1; j <= n - i + 1; j++) {
+        for(int i = 0;i<n;i++){
+            for(int j = i;j<n;j++){
                 System.out.print("*");
             }
-            for (int j = 1; j <= 2 * (i - 1); j++) {
-                System.out.print(" ");
+            for(int k = 0;k<i;k++){
+                System.out.print("  ");
             }
-            for (int j = 1; j <= n - i + 1; j++) {
+            for(int j = i;j<n;j++){
+                System.out.print("*");
+            }
+            
+            System.out.println();
+            
+        }
+        for(int i = 0;i<n;i++){
+            for(int j = 0;j<=i;j++){
+                System.out.print("*");
+                
+            }
+            for(int k = n-1;k>i;k--){
+                System.out.print("  ");
+            }
+            for(int j = 0;j<=i;j++){
                 System.out.print("*");
             }
             System.out.println();
         }
-        for (int i = n; i >= 1; i--) {
-            for (int j = 1; j <= n - i + 1; j++) {
-                System.out.print("*");
-            }
-            for (int j = 1; j <= 2 * (i - 1); j++) {
-                System.out.print(" ");
-            }
-            for (int j = 1; j <= n - i + 1; j++) {
-                System.out.print("*");
-            }
-            System.out.println();
-        }
-    }
         // code here
-    
+    }
 }
